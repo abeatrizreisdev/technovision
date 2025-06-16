@@ -1,0 +1,35 @@
+.footer-main {
+    background-color: #ffffff;
+    border-top: 1px solid #ddd;
+}
+
+.footer-title {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.hr-central {
+    border-color: #007bff;
+    /* Azul padrão do Bootstrap */
+}
+
+.footer-list li {
+    font-weight: 500;
+}
+
+.footer-contact {
+    padding-top: 30px;
+}
+
+.footer-contact li {
+    font-weight: 600;
+    font-size: 1.0rem;
+    color: #333;
+}
+
+.footer-bottom {
+    background: linear-gradient(135deg, #007bff, #0062cc);
+    color: white;
+    font-weight: 600;
+    font-size: 1.0rem;
+}

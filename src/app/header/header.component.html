@@ -1,0 +1,120 @@
+<!-- Header Principal -->
+<header class="header-main">
+  <!-- Barra Azul Superior -->
+  <div class="top-bar">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h6 class="top-bar-text mb-0 text-center py-1">A TECNOLOGIA QUE VOCÊ PRECISA NA PALMA DA SUA MÃO</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra Principal -->
+  <div class="main-header">
+    <div class="container-fluid">
+      <div class="row align-items-center py-3">
+        <!-- Logo -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="logo-container d-flex align-items-center">
+            <div class="logo-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h4 class="logo-text mb-0 ms-2">TECHNOVISION</h4>
+          </div>
+        </div>
+
+        <!-- Barra de Pesquisa -->
+        <div class="col-lg-6 col-md-8 d-none d-md-block">
+          <div class="search-container">
+            <div class="input-group search-group">
+              <input type="text" class="form-control search-input" placeholder="Faça sua pesquisa aqui..."
+                [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+              <button class="btn search-btn" type="button" (click)="onSearch()">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ações do Usuário -->
+        <div class="col-lg-3 col-md-12 col-6">
+          <div class="user-actions d-flex align-items-center justify-content-end">
+            <!-- Conta do Usuário -->
+            <div class="user-account d-flex align-items-center me-3">
+              <i class="fas fa-user-circle user-icon"></i>
+              <span class="user-text ms-2 d-none d-lg-inline">Minha Conta</span>
+            </div>
+
+            <!-- Carrinho -->
+            <div class="cart-container">
+              <button class="btn cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+              </button>
+            </div>
+
+            <!-- Menu Mobile -->
+            <button class="btn mobile-menu-btn d-md-none ms-2" (click)="toggleMenu()">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Pesquisa Mobile -->
+      <div class="row d-md-none">
+        <div class="col-12 pb-3">
+          <div class="search-container mobile-search">
+            <div class="input-group search-group">
+              <input type="text" class="form-control search-input" placeholder="Faça sua pesquisa aqui..."
+                [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+              <button class="btn search-btn" type="button" (click)="onSearch()">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu de Navegação -->
+  <nav class="navigation-menu" [class.mobile-open]="isMenuOpen">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <ul class="nav-list d-flex flex-wrap align-items-center justify-content-evenly w-100">
+            <!-- Menu Dropdown -->
+            <li class="nav-item dropdown">
+              <button class="nav-link menu-btn d-flex align-items-center dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fas fa-bars me-3"></i>
+                <span class="me-3">Menu</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" (click)="navigateTo('categoria1')">Categoria 1</a></li>
+                <li><a class="dropdown-item" href="#" (click)="navigateTo('categoria2')">Categoria 2</a></li>
+                <li><a class="dropdown-item" href="#" (click)="navigateTo('categoria3')">Categoria 3</a></li>
+              </ul>
+            </li>
+
+            <!-- Links de Navegação -->
+            <li class="nav-item">
+              <a class="nav-link" href="#" (click)="navigateTo('quem-somos')">Quem somos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" (click)="navigateTo('kits-robotica')">Kits de Robótica</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" (click)="navigateTo('apostilas')">Apostilas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" (click)="navigateTo('robotica-escolas')">Robótica nas Escolas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
