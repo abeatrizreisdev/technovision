@@ -1,0 +1,48 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="mb-4 text-center">Bem-vindo à Sua Área de Gerenciamento!</h2>
+      <p class="lead text-center">Aqui você pode acessar e gerenciar diferentes seções do sistema.</p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-box-open me-2"></i> Gerenciamento de Produtos</h5>
+          <p class="card-text">Acesse ou adicione produtos ao seu catálogo.</p>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-lg" routerLink="/catalogo">
+              <i class="fas fa-list me-2"></i> Ver Catálogo de Itens
+            </button>
+            <button class="btn btn-success btn-lg" routerLink="/cadastrar-item">
+              <i class="fas fa-plus-circle me-2"></i> Cadastrar Novo Item
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-shopping-cart me-2"></i> Pedidos e Vendas</h5>
+          <p class="card-text">Gerencie seus pedidos e visualize o histórico de vendas.</p>
+          <div class="d-grid gap-2">
+            <button class="btn btn-outline-info btn-lg" routerLink="/pedidos">
+              <i class="fas fa-receipt me-2"></i> Pedidos
+            </button>
+            <button class="btn btn-outline-secondary btn-lg" routerLink="/historico-vendas">
+              <i class="fas fa-chart-line me-2"></i> Histórico de Vendas
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-center mt-4">
+      <button class="btn btn-secondary btn-lg" routerLink="/">
+        <i class="fas fa-home me-2"></i> Voltar para a Página Inicial
+      </button>
+    </div>
+  </div>
+</div>

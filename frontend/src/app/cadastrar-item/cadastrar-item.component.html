@@ -1,0 +1,74 @@
+<!-- src/app/cadastrar-item/cadastrar-item.component.html -->
+
+<div class="container mx-auto p-6 bg-white rounded-xl shadow-lg my-8 max-w-2xl">
+  <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Cadastrar Novo Item</h2>
+  <p class="text-gray-600 mb-8 text-center">Preencha os campos abaixo para adicionar um novo produto ao seu sistema.</p>
+
+  <form (ngSubmit)="onSubmit()" class="space-y-6">
+    <!-- Campo Nome do Item -->
+    <div>
+      <label for="itemName" class="block text-sm font-medium text-gray-700 mb-1">Nome do Item</label>
+      <input type="text" id="itemName" name="itemName" [(ngModel)]="itemName" required
+        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+    </div>
+
+    <!-- Campo Descrição -->
+    <div>
+      <label for="itemDescription" class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+      <textarea id="itemDescription" name="itemDescription" [(ngModel)]="itemDescription" rows="3"
+        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Campo Preço -->
+      <div>
+        <label for="itemPrice" class="block text-sm font-medium text-gray-700 mb-1">Preço (R$)</label>
+        <input type="number" id="itemPrice" name="itemPrice" [(ngModel)]="itemPrice" required step="0.01" min="0"
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+
+      <!-- Campo Quantidade -->
+      <div>
+        <label for="itemQuantity" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
+        <input type="number" id="itemQuantity" name="itemQuantity" [(ngModel)]="itemQuantity" required min="0"
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+    </div>
+
+    <!-- Campo Categoria (Dropdown) -->
+    <div>
+      <label for="itemCategory" class="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
+      <select id="itemCategory" name="itemCategory" [(ngModel)]="itemCategory" required
+        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <option value="" disabled selected>Selecione uma categoria</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+
+    <!-- Campo Anexo de Imagem -->
+    <div>
+      <label for="itemImage" class="block text-sm font-medium text-gray-700 mb-1">Anexar Imagem (Opcional)</label>
+      <input type="file" id="itemImage" name="itemImage" (change)="onFileSelected($event)" accept="image/*" class="mt-1 block w-full text-sm text-gray-500
+                   file:mr-4 file:py-2 file:px-4
+                   file:rounded-md file:border-0
+                   file:text-sm file:font-semibold
+                   file:bg-indigo-50 file:text-indigo-700
+                   hover:file:bg-indigo-100">
+      <p *ngIf="selectedFile" class="mt-2 text-sm text-gray-600">Arquivo selecionado: {{ selectedFile.name }}</p>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="w-full text-center">
+      <div class="inline-flex space-x-10 pt-4"> <!-- Alterado de space-x-6 para space-x-10 -->
+        <button type="button" routerLink="/minha-conta"
+          class="btn btn-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Voltar
+        </button>
+        <button type="submit"
+          class="btn btn-success focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Cadastrar Item
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

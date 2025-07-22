@@ -1,0 +1,227 @@
+/* src/app/cadastrar-item/cadastrar-item.component.css */
+
+/* Estilos para o container principal do formulário */
+.container {
+    padding: 3.5rem;
+    /* Aumenta o padding para mais espaço interno */
+    background-color: #ffffff;
+    /* Fundo branco claro */
+    border-radius: 1.25rem;
+    /* Cantos mais arredondados */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    /* Sombra mais suave e pronunciada */
+    transition: all 0.3s ease-in-out;
+    max-width: 800px;
+    /* Aumenta a largura máxima do container */
+    margin-left: auto;
+    /* Centraliza o container horizontalmente */
+    margin-right: auto;
+    /* Centraliza o container horizontalmente */
+    width: 90%;
+    /* Garante que o container ocupe 90% da largura disponível, até o max-width */
+    margin-top: 1.5rem;
+    /* <-- Adiciona um espaço de 3rem (aprox. 48px) acima do container */
+
+}
+
+.container:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    /* Sombra ainda mais intensa no hover */
+}
+
+/* Estilos para os cards (seções do formulário) */
+.card {
+    border: none;
+    /* Remove a borda padrão do Bootstrap card */
+    border-radius: 1rem;
+    /* Cantos mais arredondados para os cards */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    /* Sombra leve para os cards */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: #fefefe;
+    /* Fundo ligeiramente diferente para os cards */
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    /* Elevação mais notável no hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    /* Sombra mais intensa no hover */
+}
+
+.card-title {
+    color: #212529;
+    /* Cor escura para títulos */
+    font-weight: 700;
+    /* Mais peso para o título */
+    font-size: 1.5rem;
+    /* Tamanho maior para o título */
+    margin-bottom: 1.25rem;
+}
+
+.card-text {
+    color: #495057;
+    /* Cor mais suave para o texto do card */
+    font-size: 1rem;
+}
+
+/* Estilos para os rótulos dos campos (labels) */
+label {
+    font-weight: 600;
+    /* Mais peso para as labels */
+    color: #343a40;
+    /* Cor escura para melhor legibilidade */
+    margin-bottom: 0.5rem;
+    /* Mais espaçamento abaixo da label */
+    display: block;
+    /* Garante que a label ocupe sua própria linha */
+    font-size: 0.95rem;
+}
+
+/* Estilos para os inputs e textareas */
+input[type="text"],
+input[type="number"],
+input[type="url"],
+textarea,
+select {
+    height: 3.25rem;
+    /* Aumenta a altura dos inputs */
+    border-radius: 0.75rem;
+    /* Cantos mais arredondados */
+    border: 1px solid #ced4da;
+    /* Borda mais suave */
+    padding: 0.875rem 1.5rem;
+    /* Espaçamento interno ajustado */
+    background-color: #f8f9fa;
+    /* Fundo levemente cinza para inputs */
+    color: #343a40;
+    /* Cor do texto do input */
+    font-size: 1.05rem;
+    /* Tamanho da fonte ligeiramente maior */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    width: 100%;
+    /* Faz com que os inputs ocupem 100% da largura do pai */
+    box-sizing: border-box;
+    /* Garante que padding e border sejam incluídos na largura total */
+}
+
+textarea {
+    min-height: 10rem;
+    resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    /* Azul primário do Bootstrap no foco */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    /* Sombra de foco do Bootstrap */
+    background-color: #ffffff;
+    /* Fundo branco no foco */
+}
+
+/* Estilo específico para o input de arquivo (file input) */
+input[type="file"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #e9ecef;
+    /* Cinza claro */
+    color: #495057;
+    /* Cinza escuro */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    /* Cantos mais arredondados */
+    border: 1px solid #ced4da;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #dee2e6;
+    /* Cinza um pouco mais escuro no hover */
+    border-color: #adb5bd;
+}
+
+/* Estilos para os botões de ação (Cadastrar Item, Voltar) */
+/* Removendo a classe de teste e ajustando as cores para ficarem bonitas e separadas */
+.btn {
+    font-weight: 700;
+    border-radius: 0.75rem;
+    padding: 0.7rem 2rem;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.1s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra padrão para botões */
+    margin: 0 0.75rem;
+    /* Adiciona margem horizontal para separar os botões */
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos específicos para o botão de sucesso (Cadastrar Item) */
+.btn-success {
+    background-color: #28a745;
+    /* Verde mais vibrante (Bootstrap success) */
+    border-color: #28a745;
+    color: #ffffff;
+    /* Texto branco para contraste */
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    /* Verde mais escuro no hover */
+    border-color: #1e7e34;
+}
+
+/* Estilos específicos para o botão secundário (Voltar) */
+.btn-secondary {
+    background-color: #007bff;
+    /* Azul primário do Bootstrap */
+    border-color: #007bff;
+    color: #ffffff;
+    /* Texto branco para contraste */
+}
+
+.btn-secondary:hover {
+    background-color: #0056b3;
+    /* Azul mais escuro no hover */
+    border-color: #0056b3;
+}
+
+/* Estilo para a mensagem do arquivo selecionado */
+p.text-sm.text-gray-600 {
+    margin-top: 0.75rem;
+    font-style: italic;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Ajustes para o título e parágrafo introdutório */
+h2.text-3xl {
+    color: #212529;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+}
+
+p.lead {
+    color: #495057;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+

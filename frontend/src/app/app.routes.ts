@@ -1,3 +1,18 @@
-import { Routes } from '@angular/router';
+// src/app/app.routes.ts
 
-export const routes: Routes = [];
+import { Routes } from '@angular/router';
+import { HomeAccountComponent } from './home-account/home-account.component';
+import { BannerCarrosselComponent } from './banner-carrossel/banner-carrossel.component';
+import { CadastrarItemComponent } from './cadastrar-item/cadastrar-item.component'; // <-- ESSENCIAL: Importe o componente de cadastro
+
+export const routes: Routes = [
+  // Rota padrão (página inicial) - exibirá o BannerCarrosselComponent
+  { path: '', component: BannerCarrosselComponent },
+
+  // Rota para a página 'Minha Conta' - exibirá o HomeAccountComponent
+  { path: 'minha-conta', component: HomeAccountComponent },
+
+  // Rota para a página 'Cadastrar Item' - exibirá o CadastrarItemComponent
+  { path: 'cadastrar-item', component: CadastrarItemComponent }, // <-- Sintaxe corrigida aqui
+
+];
