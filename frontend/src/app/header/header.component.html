@@ -16,7 +16,7 @@
     <div class="container-fluid">
       <div class="row align-items-center py-3">
         <!-- Logo -->
-        <div class="col-lg-3 col-md-4 col-6">
+        <div class="col-lg-3 col-md-4 col-6" routerLink="/" (click)="toggleMenu()">
           <div class="logo-container d-flex align-items-center">
             <div class="logo-icon">
               <img src="logo.png" class="img-fluid" alt="Logo">
@@ -94,24 +94,25 @@
                 <span class="me-3">Menu</span>
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#" (click)="navigateTo('categoria1')">Categoria 1</a></li>
-                <li><a class="dropdown-item" href="#" (click)="navigateTo('categoria2')">Categoria 2</a></li>
-                <li><a class="dropdown-item" href="#" (click)="navigateTo('categoria3')">Categoria 3</a></li>
+                <!-- CATEGORIAS AGORA USAM routerLink E (click)="toggleMenu()" -->
+                <li><a class="dropdown-item" routerLink="/arduino" (click)="toggleMenu()">Arduino</a></li>
+                <li><a class="dropdown-item" routerLink="/kits-diversos" (click)="toggleMenu()">Kits Diversos</a></li>
+                <li><a class="dropdown-item" routerLink="/componentes" (click)="toggleMenu()">Componentes</a></li>
               </ul>
             </li>
 
-            <!-- Links de Navegação -->
+            <!-- Links de Navegação (outros links, se houver) -->
             <li class="nav-item">
-              <a class="nav-link" href="#" (click)="navigateTo('quem-somos')">Quem somos</a>
+              <a class="nav-link" href="#" routerLink="/" (click)="toggleMenu()">Quem somos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" (click)="navigateTo('kits-robotica')">Kits de Robótica</a>
+              <a class="nav-link" href="#" routerLink="/kits-diversos" (click)="toggleMenu()">Kits Diversos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" (click)="navigateTo('apostilas')">Apostilas</a>
+              <a class="nav-link" href="#" routerLink="/" (click)="toggleMenu()">Apostilas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" (click)="navigateTo('robotica-escolas')">Robótica nas Escolas</a>
+              <a class="nav-link" href="#" routerLink="/" (click)="toggleMenu()">Robótica nas Escolas</a>
             </li>
           </ul>
         </div>

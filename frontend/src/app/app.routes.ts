@@ -6,6 +6,10 @@ import { BannerCarrosselComponent } from './banner-carrossel/banner-carrossel.co
 import { CadastrarItemComponent } from './cadastrar-item/cadastrar-item.component'; // <-- ESSENCIAL: Importe o componente de cadastro
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { EditarItemComponent } from './editar-item/editar-item.component'; // <-- Importe o EditarItemComponent
+import { VisualizacaoItensComponent } from './visualizacao-itens/visualizacao-itens.component'; // <-- Importe o novo componente
+import { ArduinoComponent } from './arduino/arduino.component';
+import { KitsDiversosComponent } from './kits-diversos/kits-diversos.component';
+import { ComponentesComponent } from './componentes/componentes.component';
 
 
 export const routes: Routes = [
@@ -22,4 +26,11 @@ export const routes: Routes = [
 
   { path: 'editar-item/:id', component: EditarItemComponent }, // <-- Adicione esta nova rota com parâmetro ID
 
+  { path: 'visualizacao-itens', component: VisualizacaoItensComponent }, // <-- Nova rota para visualização
+  
+  { path: 'arduino', component: ArduinoComponent },
+
+  { path: 'kits-diversos', component: KitsDiversosComponent },
+
+  { path: 'componentes', component: ComponentesComponent },
 ];

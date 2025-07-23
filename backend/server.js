@@ -15,7 +15,7 @@ const PORT = 3000;
 const dbConfig = {
     host: 'localhost',
     user: 'root',
-    password: '123456', // <--- SUBSTITUA PELA SUA SENHA DO MYSQL!
+    password: '123456',
     database: 'db_technovision'
 };
 
@@ -40,9 +40,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
-// body-parser.json() é para requisições JSON. Para PUT com FormData, Multer cuidará.
-// No entanto, se você tiver outras rotas PUT/PATCH que só enviam JSON, mantenha-o.
-// Para esta rota PUT com Multer, o Multer processará o body.
+
 app.use(bodyParser.json());
 
 const uploadDir = path.resolve(__dirname, 'uploads');
@@ -130,7 +128,6 @@ app.get('/items', async (req, res) => {
 });
 
 // Endpoint para atualizar um item (PUT /items/:id)
-// AGORA USA upload.single('image') para lidar com a nova imagem
 app.put('/items/:id', upload.single('image'), async (req, res) => {
     const itemId = req.params.id;
     // req.body agora contém os campos do formulário (name, description, etc.)

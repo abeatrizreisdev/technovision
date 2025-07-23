@@ -1,4 +1,3 @@
-// src/app/home-account/home-account.component.ts
 
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common'; // isPlatformBrowser também vem daqui

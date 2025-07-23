@@ -1,0 +1,351 @@
+/* src/app/visualizacao-itens/visualizacao-itens.component.css */
+
+/* Estilos gerais para o container do catálogo */
+.container {
+    padding: 2rem;
+}
+
+/* Estilos para os cards de item */
+.bg-white {
+    background-color: #ffffff;
+}
+
+.rounded-xl {
+    border-radius: 0.75rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.transform {
+    transform: none;
+}
+
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+.hover\:scale-105:hover {
+    transform: scale(1.05);
+}
+
+.hover\:shadow-xl:hover {
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* Estilos para o contêiner da imagem */
+.image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Proporção 1:1 (quadrado) */
+    overflow: hidden;
+    position: relative;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Estilos para a imagem dentro do contêiner */
+.catalog-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover .catalog-item-image {
+    transform: scale(1.1);
+}
+
+/* Estilos para o texto dentro do card */
+.p-5 {
+    padding: 1.25rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-gray-900 {
+    color: #1a202c;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.text-gray-600 {
+    color: #4a5568;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+}
+
+/* Propriedades para truncar texto em múltiplas linhas (line-clamp) */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-clamp: 2;
+}
+
+.mb-3 {
+    margin-bottom: 0.75rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.text-indigo-700 {
+    color: #4338ca;
+}
+
+.text-gray-500 {
+    color: #a0aec0;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+}
+
+/* Estilos para o botão de voltar */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.1s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para o título da página */
+.text-4xl {
+    font-size: 2.25rem;
+}
+
+.font-extrabold {
+    font-weight: 800;
+}
+
+.text-gray-900 {
+    color: #1a202c;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+/* Estilos para o parágrafo introdutório */
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-gray-700 {
+    color: #2d3748;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem;
+}
+
+.max-w-2xl {
+    max-width: 42rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilos para mensagens de status (carregando, erro, vazio) */
+.text-center {
+    text-align: center;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+}
+
+.text-indigo-600 {
+    color: #4c51bf;
+}
+
+.my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.text-red-600 {
+    color: #e53e3e;
+}
+
+.bg-red-100 {
+    background-color: #fed7d7;
+}
+
+.border {
+    border-width: 1px;
+}
+
+.border-red-400 {
+    border-color: #fc8181;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.text-gray-600 {
+    color: #4a5568;
+}
+
+.bg-gray-100 {
+    background-color: #f7fafc;
+}
+
+.border-gray-300 {
+    border-color: #e2e8f0;
+}
+
+/* Estilos para a grade de itens */
+.grid {
+    display: grid;
+}
+
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+/* Estilos para os botões de ação do card (Comprar) */
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.bg-green-500 {
+    background-color: #22c55e;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.rounded-md {
+    border-radius: 0.375rem;
+}
+
+.text-base {
+    font-size: 1rem;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.hover\:bg-green-600:hover {
+    background-color: #16a34a;
+}
+
+.transition-colors {
+    transition-property: background-color, border-color, color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+}
+
+.w-full {
+    width: 100%;
+}
+
+/* Estilos para o botão "Voltar para a Página Inicial" */
+.mt-12 {
+    margin-top: 3rem;
+}
+
+.px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.fa-arrow-left {
+    margin-right: 0.5rem;
+}

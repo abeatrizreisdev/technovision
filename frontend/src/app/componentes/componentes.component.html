@@ -1,0 +1,68 @@
+
+<div class="container mx-auto p-6 my-8">
+    <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">
+        Itens da Categoria "{{ fixedCategory }}"
+    </h2>
+    <p class="text-lg text-gray-700 mb-10 text-center max-w-2xl mx-auto">
+        Explore os itens de {{ fixedCategory }} disponíveis.
+    </p>
+
+    <div *ngIf="isLoading" class="text-center text-xl text-indigo-600 my-10">
+        Carregando itens...
+    </div>
+
+    <div *ngIf="errorMessage"
+        class="text-center text-xl text-red-600 my-10 p-4 bg-red-100 border border-red-400 rounded-lg">
+        {{ errorMessage }}
+    </div>
+
+    <div *ngIf="!isLoading && items.length === 0 && !errorMessage"
+        class="text-center text-xl text-gray-600 my-10 p-4 bg-gray-100 border border-gray-300 rounded-lg">
+        Nenhum item encontrado nesta categoria.
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div *ngFor="let item of items"
+            class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            <div class="p-5">
+                <div class="image-container">
+                    <img [src]="item?.imageUrl || 'https://placehold.co/400x300/e0e0e0/000000?text=Sem+Imagem'"
+                        [alt]="item?.name || 'Imagem do Item'" class="catalog-item-image">
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ item?.name }}</h3>
+                <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ item?.description }}</p>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-2xl font-bold text-indigo-700">
+                        <ng-container *ngIf="item?.price !== undefined && item?.price !== null">
+                            R$ {{ item.price | number:'1.2-2' }}
+                        </ng-container>
+                        <ng-container *ngIf="item?.price === undefined || item?.price === null">
+                            R$ --.--
+                        </ng-container>
+                    </span>
+                    <span class="text-sm text-gray-500">
+                        <ng-container *ngIf="item?.quantity !== undefined && item?.quantity !== null">
+                            Qtd: {{ item.quantity }}
+                        </ng-container>
+                        <ng-container *ngIf="item?.quantity === undefined || item?.quantity === null">
+                            Qtd: --
+                        </ng-container>
+                    </span>
+                </div>
+                <div class="text-xs text-gray-500 mb-4">Categoria: {{ item?.category }}</div>
+                <div class="mt-4 text-center">
+                    <button (click)="buyItem(item)"
+                        class="px-4 py-2 bg-green-500 text-white rounded-md text-base font-semibold hover:bg-green-600 transition-colors duration-200 w-full">
+                        <i class="fas fa-shopping-cart me-2"></i> Comprar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-12">
+        <button class="btn btn-secondary px-8 py-3 text-lg" routerLink="/">
+            <i class="fas fa-arrow-left me-2"></i> Voltar para a Página Inicial
+        </button>
+    </div>
+</div>

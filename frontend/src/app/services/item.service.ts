@@ -9,7 +9,7 @@ export interface Item {
   price: number;
   quantity: number;
   category: string;
-  imageUrl?: string; // Opcional, pois pode não ter imagem
+  imageUrl?: string;
 }
 
 @Injectable({
@@ -18,15 +18,10 @@ export interface Item {
 export class ItemService {
 
   private backendBaseUrl = 'http://localhost:3000/items';
-  private backendStaticUrl = 'http://localhost:3000'; // URL base para servir imagens estáticas
+  private backendStaticUrl = 'http://localhost:3000';
 
   constructor() { }
 
-  /**
-   * Envia os dados de um novo item para o backend para cadastro.
-   * @param formData Um objeto FormData contendo os dados do item e o arquivo de imagem.
-   * @returns Uma Promise que resolve com o resultado do backend ou rejeita com um erro.
-   */
   async createItem(formData: FormData): Promise<any> {
     try {
       const response = await fetch(this.backendBaseUrl, {
@@ -47,10 +42,12 @@ export class ItemService {
   }
 
   /**
-   * Busca todos os itens do backend.
-   * @returns Uma Promise que resolve com um array de itens ou rejeita com um erro.
+   * Busca todos os itens do backend e filtra por um termo de busca ou categoria.
+   * @param filterOptions Objeto com searchTerm (string) e/ou category (string) para filtrar.
+   * @returns Uma Promise que resolve com um array de itens filtrados.
    */
-  async getItems(): Promise<Item[]> {
+  async getItems(filterOptions?: { searchTerm?: string; category?: string }): Promise<Item[]> {
+    console.log('ItemService: getItems() chamado com opções de filtro:', filterOptions); // LOG
     try {
       const response = await fetch(this.backendBaseUrl, {
         method: 'GET'
@@ -58,16 +55,35 @@ export class ItemService {
 
       if (response.ok) {
         const data = await response.json();
-        return data.map((itemData: any) => ({
+        let items: Item[] = data.map((itemData: any) => ({
           id: itemData.id,
           name: itemData.nome,
           description: itemData.descricao,
           price: itemData.preco,
           quantity: itemData.quantidade,
           category: itemData.categoria,
-          // CONSTRUÇÃO DA URL COMPLETA DA IMAGEM AQUI:
           imageUrl: itemData.image_url ? `${this.backendStaticUrl}${itemData.image_url}` : undefined,
         })) as Item[];
+
+        // Aplica a filtragem no frontend
+        if (filterOptions?.searchTerm) {
+          const lowerCaseSearchTerm = filterOptions.searchTerm.toLowerCase();
+          items = items.filter(item =>
+            item.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+            item.description.toLowerCase().includes(lowerCaseSearchTerm) ||
+            item.category.toLowerCase().includes(lowerCaseSearchTerm)
+          );
+          console.log('ItemService: Itens filtrados por termo de busca. Total:', items.length); // LOG
+        } else if (filterOptions?.category) {
+          const lowerCaseCategory = filterOptions.category.toLowerCase();
+          items = items.filter(item =>
+            item.category.toLowerCase() === lowerCaseCategory
+          );
+          console.log('ItemService: Itens filtrados por categoria. Total:', items.length); // LOG
+        } else {
+          console.log('ItemService: Buscando todos os itens (sem filtro). Total:', items.length); // LOG
+        }
+        return items;
       } else {
         const errorData = await response.json();
         throw new Error(errorData.message || `Erro do servidor: ${response.status} ${response.statusText}`);
@@ -78,17 +94,11 @@ export class ItemService {
     }
   }
 
-  /**
-   * Atualiza um item existente no backend, incluindo a possibilidade de enviar uma nova imagem.
-   * @param id O ID do item a ser atualizado.
-   * @param formData Um objeto FormData contendo os dados atualizados do item e, opcionalmente, o novo arquivo de imagem.
-   * @returns Uma Promise que resolve com o resultado do backend ou rejeita com um erro.
-   */
-  async updateItem(id: number, formData: FormData): Promise<any> { // <--- Aceita FormData agora
+  async updateItem(id: number, formData: FormData): Promise<any> {
     try {
       const response = await fetch(`${this.backendBaseUrl}/${id}`, {
         method: 'PUT',
-        body: formData // Envia FormData
+        body: formData
       });
 
       if (response.ok) {
@@ -103,11 +113,6 @@ export class ItemService {
     }
   }
 
-  /**
-   * Exclui um item do backend.
-   * @param id O ID do item a ser excluído.
-   * @returns Uma Promise que resolve com o resultado do backend ou rejeita com um erro.
-   */
   async deleteItem(id: number): Promise<any> {
     try {
       const response = await fetch(`${this.backendBaseUrl}/${id}`, {

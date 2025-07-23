@@ -29,7 +29,7 @@ export class CadastrarItemComponent {
   selectedFile: File | null = null;
 
   categories: string[] = [
-    'Eletrônicos', 'Roupas', 'Livros', 'Decoração', 'Alimentos', 'Esportes', 'Brinquedos', 'Outros'
+    'Arduino', 'Kits Diversos', 'Componentes'
   ];
 
   // Injete o ItemService no construtor
