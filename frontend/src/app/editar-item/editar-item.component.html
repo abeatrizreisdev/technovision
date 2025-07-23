@@ -1,0 +1,89 @@
+<!-- src/app/editar-item/editar-item.component.html -->
+
+<div class="container mx-auto p-6 bg-white rounded-xl shadow-lg my-8 max-w-2xl">
+  <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Editar Item</h2>
+  <p class="text-gray-600 mb-8 text-center">Altere os campos abaixo para atualizar as informações do item.</p>
+
+  <div *ngIf="isLoading" class="text-center text-xl text-indigo-600 my-10">
+    Carregando item para edição...
+  </div>
+
+  <div *ngIf="errorMessage" class="text-center text-xl text-red-600 my-10 p-4 bg-red-100 border border-red-400 rounded-lg">
+    {{ errorMessage }}
+  </div>
+
+  <form *ngIf="item && !isLoading" (ngSubmit)="onSubmit()" class="space-y-6">
+    <!-- Campo Nome do Item -->
+    <div>
+      <label for="itemName" class="block text-sm font-medium text-gray-700 mb-1">Nome do Item</label>
+      <input type="text" id="itemName" name="itemName" [(ngModel)]="item.name" required
+             class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+    </div>
+
+    <!-- Campo Descrição -->
+    <div>
+      <label for="itemDescription" class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+      <textarea id="itemDescription" name="itemDescription" [(ngModel)]="item.description" rows="3"
+                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Campo Preço -->
+      <div>
+        <label for="itemPrice" class="block text-sm font-medium text-gray-700 mb-1">Preço (R$)</label>
+        <input type="number" id="itemPrice" name="itemPrice" [(ngModel)]="item.price" required step="0.01" min="0"
+               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+
+      <!-- Campo Quantidade -->
+      <div>
+        <label for="itemQuantity" class="block text-sm font-medium text-gray-700 mb-1">Quantidade</label>
+        <input type="number" id="itemQuantity" name="itemQuantity" [(ngModel)]="item.quantity" required min="0"
+               class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+    </div>
+
+    <!-- Campo Categoria (Dropdown) -->
+    <div>
+      <label for="itemCategory" class="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
+      <select id="itemCategory" name="itemCategory" [(ngModel)]="item.category" required
+              class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <option value="" disabled>Selecione uma categoria</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+
+    <!-- Campo Imagem -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Imagem Atual</label>
+      <div class="mb-2">
+        <!-- Prévia da imagem atual ou do novo arquivo selecionado -->
+        <img [src]="item.imageUrl || 'https://placehold.co/100x75/e0e0e0/000000?text=Sem+Imagem'" [alt]="item.name" class="w-24 h-auto rounded-md shadow-sm border border-gray-200 object-cover">
+      </div>
+      <label for="itemImage" class="block text-sm font-medium text-gray-700 mb-1">Anexar Nova Imagem (Opcional)</label>
+      <input type="file" id="itemImage" name="itemImage" (change)="onFileSelected($event)" accept="image/*"
+             class="mt-1 block w-full text-sm text-gray-500
+                   file:mr-4 file:py-2 file:px-4
+                   file:rounded-md file:border-0
+                   file:text-sm file:font-semibold
+                   file:bg-indigo-50 file:text-indigo-700
+                   hover:file:bg-indigo-100">
+      <p *ngIf="selectedFile" class="mt-2 text-sm text-gray-600">Novo arquivo selecionado: {{ selectedFile.name }}</p>
+      <p *ngIf="!selectedFile && item.imageUrl" class="mt-2 text-sm text-gray-600">Manter imagem existente.</p>
+    </div>
+
+    <!-- Botões de Ação -->
+    <div class="w-full text-center">
+      <div class="inline-flex space-x-10 pt-4">
+        <button type="button" (click)="goBack()"
+          class="btn btn-secondary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Cancelar
+        </button>
+        <button type="submit"
+          class="btn btn-success focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Salvar Alterações
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

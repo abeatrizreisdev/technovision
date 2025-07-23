@@ -2,10 +2,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
-import { RouterLink } from '@angular/router';
-import { ItemService, Item } from '../services/item.service'; // Importe ItemService e a interface Item
+import { Router, RouterLink } from '@angular/router'; // Importe Router
+import { ItemService, Item } from '../services/item.service';
 
 @Component({
   selector: 'app-catalogo',
@@ -19,24 +17,20 @@ import { ItemService, Item } from '../services/item.service'; // Importe ItemSer
 })
 export class CatalogoComponent implements OnInit {
 
-  items: Item[] = []; // Array para armazenar os itens do catálogo
-  isLoading: boolean = true; // Indicador de carregamento
-  errorMessage: string = ''; // Mensagem de erro
+  items: Item[] = [];
+  isLoading: boolean = true;
+  errorMessage: string = '';
 
-  // Injete o ItemService no construtor
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService, private router: Router) { } // Injete Router
 
   async ngOnInit(): Promise<void> {
-    await this.fetchItems(); // Busca os itens ao iniciar o componente
+    await this.fetchItems();
   }
 
-  /**
-   * Busca os itens do backend usando o ItemService.
-   */
   async fetchItems(): Promise<void> {
     this.isLoading = true;
     this.errorMessage = '';
-    this.items = []; // Limpa os itens existentes antes de buscar novamente
+    this.items = [];
 
     try {
       this.items = await this.itemService.getItems();
@@ -50,14 +44,15 @@ export class CatalogoComponent implements OnInit {
   }
 
   /**
-   * Lida com a ação de editar um item.
-   * Por enquanto, apenas um console.log. Em um app real, redirecionaria para um formulário de edição.
+   * Lida com a ação de editar um item, navegando para a página de edição.
    * @param item O item a ser editado.
    */
   editItem(item: Item): void {
-    alert(`Funcionalidade de Edição para o item: ${item.name} (ID: ${item.id}) - Em breve!`);
-    console.log('Editar item:', item);
-    // Futuramente: this.router.navigate(['/editar-item', item.id]);
+    if (item.id !== undefined) {
+      this.router.navigate(['/editar-item', item.id]); // Navega para a rota de edição com o ID
+    } else {
+      alert('Erro: ID do item não definido para edição.');
+    }
   }
 
   /**
@@ -70,7 +65,7 @@ export class CatalogoComponent implements OnInit {
       return;
     }
 
-    if (confirm(`Tem certeza que deseja excluir o item com ID: ${id}?`)) { // Usando confirm para simplicidade
+    if (confirm(`Tem certeza que deseja excluir o item com ID: ${id}?`)) {
       try {
         await this.itemService.deleteItem(id);
         alert('Item excluído com sucesso!');

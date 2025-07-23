@@ -4,7 +4,9 @@ import { Routes } from '@angular/router';
 import { HomeAccountComponent } from './home-account/home-account.component';
 import { BannerCarrosselComponent } from './banner-carrossel/banner-carrossel.component';
 import { CadastrarItemComponent } from './cadastrar-item/cadastrar-item.component'; // <-- ESSENCIAL: Importe o componente de cadastro
-import { CatalogoComponent } from './catalogo/catalogo.component'; 
+import { CatalogoComponent } from './catalogo/catalogo.component';
+import { EditarItemComponent } from './editar-item/editar-item.component'; // <-- Importe o EditarItemComponent
+
 
 export const routes: Routes = [
   // Rota padrão (página inicial) - exibirá o BannerCarrosselComponent
@@ -14,8 +16,10 @@ export const routes: Routes = [
   { path: 'minha-conta', component: HomeAccountComponent },
 
   // Rota para a página 'Cadastrar Item' - exibirá o CadastrarItemComponent
-  { path: 'cadastrar-item', component: CadastrarItemComponent }, 
+  { path: 'cadastrar-item', component: CadastrarItemComponent },
 
-  { path: 'catalogo', component: CatalogoComponent }, 
+  { path: 'catalogo', component: CatalogoComponent },
+
+  { path: 'editar-item/:id', component: EditarItemComponent }, // <-- Adicione esta nova rota com parâmetro ID
 
 ];
