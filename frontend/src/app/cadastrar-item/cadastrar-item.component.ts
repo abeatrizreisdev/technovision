@@ -6,19 +6,18 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ItemService } from '../services/item.service'; // <-- Importe o ItemService
 
 @Component({
   selector: 'app-cadastrar-item',
   standalone: true,
   imports: [
     CommonModule,
-    HeaderComponent,
-    FooterComponent,
     RouterLink,
     FormsModule
   ],
   templateUrl: './cadastrar-item.component.html',
-  styleUrl: './cadastrar-item.component.css' // <-- VERIFIQUE SE ESTE CAMINHO ESTÁ CORRETO
+  styleUrl: './cadastrar-item.component.css'
 })
 export class CadastrarItemComponent {
 
@@ -30,17 +29,11 @@ export class CadastrarItemComponent {
   selectedFile: File | null = null;
 
   categories: string[] = [
-    'Eletrônicos',
-    'Roupas',
-    'Livros',
-    'Decoração',
-    'Alimentos',
-    'Esportes',
-    'Brinquedos',
-    'Outros'
+    'Eletrônicos', 'Roupas', 'Livros', 'Decoração', 'Alimentos', 'Esportes', 'Brinquedos', 'Outros'
   ];
 
-  constructor() { }
+  // Injete o ItemService no construtor
+  constructor(private itemService: ItemService) { }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -54,13 +47,12 @@ export class CadastrarItemComponent {
 
   async onSubmit(): Promise<void> {
     if (!this.itemName || !this.itemPrice || !this.itemQuantity || !this.itemCategory) {
-      console.error('Por favor, preencha todos os campos obrigatórios (Nome, Preço, Quantidade, Categoria).');
-      alert('Por favor, preencha todos os campos obrigatórios!');
+      alert('Por favor, preencha todos os campos obrigatórios (Nome, Preço, Quantidade, Categoria).');
       return;
     }
 
     const formData = new FormData();
-    formData.append('name', this.itemName);
+    formData.append('name', this.itemName); // Nomes dos campos do formulário
     formData.append('description', this.itemDescription);
     formData.append('price', this.itemPrice.toString());
     formData.append('quantity', this.itemQuantity.toString());
@@ -69,28 +61,18 @@ export class CadastrarItemComponent {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
 
-    const backendUrl = 'http://localhost:3000/items';
-
     try {
-      const response = await fetch(backendUrl, {
-        method: 'POST',
-        body: formData
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log('Item cadastrado com sucesso!', result);
-        alert('Item cadastrado com sucesso!');
-      } else {
-        const errorData = await response.json();
-        console.error('Erro ao cadastrar item:', response.status, errorData);
-        alert(`Erro ao cadastrar item: ${errorData.message || response.statusText}`);
-      }
-    } catch (error) {
-      console.error('Erro de rede ou no servidor:', error);
-      alert('Não foi possível conectar ao servidor backend. Verifique se ele está rodando e se o CORS está configurado.');
+      // Chama o método createItem do ItemService
+      const result = await this.itemService.createItem(formData);
+      console.log('Item cadastrado com sucesso no banco de dados MySQL!', result);
+      alert('Item cadastrado com sucesso!');
+      // Opcional: Redirecionar o usuário ou limpar o formulário
+    } catch (error: any) {
+      console.error('Erro ao cadastrar item:', error.message);
+      alert(`Erro ao cadastrar item: ${error.message}`);
     }
 
+    // Limpa os campos do formulário
     this.itemName = '';
     this.itemDescription = '';
     this.itemPrice = null;
