@@ -25,8 +25,7 @@ export class EditarItemComponent implements OnInit {
   selectedFile: File | null = null; // Para a nova imagem selecionada
 
   categories: string[] = [
-    'Eletrônicos', 'Roupas', 'Livros', 'Decoração', 'Alimentos', 'Esportes', 'Brinquedos', 'Outros'
-  ];
+    'Arduino','Kits Diversos','Componentes'  ];
 
   constructor(
     private route: ActivatedRoute,
